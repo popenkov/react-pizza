@@ -1,9 +1,9 @@
-import pizzaLogo from "./assets/img/pizza-logo.svg";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <div className="wrapper">
-      <div className="header">
+      {/* <div className="header">
         <div className="container">
           <div className="header__logo">
             <img width="38" src={pizzaLogo} alt="Pizza logo" />
@@ -49,7 +49,8 @@ function App() {
             </a>
           </div>
         </div>
-      </div>
+      </div> */}
+      <Header />
       <div className="content">
         <div className="container">
           <div className="content__top">

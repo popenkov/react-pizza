@@ -2,9 +2,7 @@ import classnames from "classnames";
 
 const Button = ({ children, className }) => {
   return (
-    <a href="/cart.html" className={classnames("button", className)}>
-      {children}
-    </a>
+    <button className={classnames("button", className)}>{children}</button>
   );
 };
 

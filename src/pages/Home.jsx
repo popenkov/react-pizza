@@ -9,7 +9,11 @@ const categoriesArr = [
   "Закрытые",
 ];
 
-const sortArr = ["популярности", "цене", "алфавиту"];
+const sortArr = [
+  { name: "популярности", type: "popular" },
+  { name: "цене", type: "price" },
+  { name: "алфавиту", type: "alphabet" },
+];
 
 function Home({ items }) {
   const onClick = (index) => {

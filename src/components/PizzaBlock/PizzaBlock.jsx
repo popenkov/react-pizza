@@ -2,8 +2,6 @@ import { useState } from "react";
 import cn from "classnames";
 import PropTypes from "prop-types";
 
-/* import { string, number, array, arrayOf } from "prop-types"; */
-
 function PizzaBlock({ name, imageUrl, types, price, sizes, category, rating }) {
   const availableTypes = ["тонкое", "традиционное"];
   const availableSizes = [26, 30, 40];

@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 
 export default function SortPopup({ items }) {
   const [visiblePopup, setvisiblePopup] = useState(false);
   const [activeSortItem, setActiveSortItem] = useState(0);
 
+  const dispatch = useDispatch();
+
   const sortRef = useRef(null);
-  const activeLabel = items[activeSortItem];
+  const activeLabel = items[activeSortItem].name;
 
   const popupVisibleToggle = () => {
     setvisiblePopup((state) => !state);
@@ -14,6 +17,7 @@ export default function SortPopup({ items }) {
   const selectSortItem = (index) => {
     setActiveSortItem(index);
     setvisiblePopup(false);
+    /*     dispatch; */
   };
 
   const handleOutsideClick = (evt) => {
@@ -48,18 +52,15 @@ export default function SortPopup({ items }) {
       {visiblePopup && (
         <div className="sort__popup">
           <ul>
-            {/*    <li className="active">популярности</li>
-            <li>цене</li>
-            <li>алфавиту</li> */}
             {Boolean(items) &&
-              items.map((sortItem, index) => {
+              items.map((obj, index) => {
                 return (
                   <li
-                    key={sortItem}
+                    key={`${obj.type}_${index}`}
                     onClick={() => selectSortItem(index)}
                     className={activeSortItem === index ? "active" : ""}
                   >
-                    {sortItem}
+                    {obj.name}
                   </li>
                 );
               })}

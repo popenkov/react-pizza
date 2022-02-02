@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-export default function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({ items }) {
   const [visiblePopup, setvisiblePopup] = useState(false);
   const [activeSortItem, setActiveSortItem] = useState(0);
 
@@ -69,4 +69,6 @@ export default function SortPopup({ items }) {
       )}
     </div>
   );
-}
+});
+
+export default SortPopup;

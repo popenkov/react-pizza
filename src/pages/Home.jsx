@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Categories, SortPopup, PizzaBlock } from "../components";
+
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory } from "../redux/actions/filter";
 
 const categoriesArr = [
   "Мясные",
@@ -15,21 +18,26 @@ const sortArr = [
   { name: "алфавиту", type: "alphabet" },
 ];
 
-function Home({ items }) {
-  const onClick = (index) => {
+function Home() {
+  const items = useSelector(({ pizzas }) => pizzas.items);
+
+  const dispatch = useDispatch();
+  const onSelectCategory = useCallback((index) => {
     console.log(index);
-  };
+    dispatch(setCategory(index));
+  }, []);
   return (
     <div className="container">
       <div className="content__top">
-        <Categories items={categoriesArr} onClick={onClick} />
+        <Categories items={categoriesArr} onSelectCategory={onSelectCategory} />
         <SortPopup items={sortArr} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {items.map((pizza) => {
-          return <PizzaBlock key={pizza.id} {...pizza} />;
-        })}
+        {Boolean(items) &&
+          items.map((pizza) => {
+            return <PizzaBlock key={pizza.id} {...pizza} />;
+          })}
       </div>
     </div>
   );
